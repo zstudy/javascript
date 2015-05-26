@@ -1,4 +1,4 @@
-<!-- 
+﻿<!-- 
 1) The battlefield is a field 8x8
      - create js code to initialize the field.
              - size of the cell is 30x30px
@@ -76,31 +76,53 @@
 				}
 			}
 
-			function MapObject()
+
+			var Map = []
+
+			for (var x = 0; x < 8; x++) {
+			    for (var y = 0; y < 8; y++) {
+			        Map[x][y] = null;
+			    }
+			}
+
+
+            
+
+			function MapObject(pos)
 			{
-				this.position = [0,0];
+				this.position = pos;
 				this.healthy = 100;
-				this.action = function(mapObject){ };
+				this.act = function(){ };
 			}
 
-			function Worker()
+			function Worker(pos, name)
 			{
-				MapObject.apply(this);
-				this.Walk = function(map){ };
+			    MapObject.apply(this, arguments);
+			    this.act = function () {
+
+			        //walk
+			        //map[][] = null
+			        //map[new][new] = this;
+
+			    };
 			}
 
+            var worker = new Worker();
+            
+            function Initialize(map)
+            {
+                map[2][5] = new Worker();
+                map[7][7] = new Worker();
+            }
+
+            Initialize(Map);
 
 
 
+            Map[0][0].act();
 
-			var worker = new Worker();
 
-			worker.position[0] = 2;
-			worker.position[1] = 3;
-			console.log(worker.position);
-
-			var worker1 = new Worker();
-			console.log(worker1.position);
+            
 
 
 			
